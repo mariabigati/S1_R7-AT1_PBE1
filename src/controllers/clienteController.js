@@ -40,7 +40,7 @@ const clienteController = {
         try {
             const idCliente = Number(req.params.idCliente);
             const { nome, cpf } = req.body;
-            if (!idCliente || (!nome && !cpf) || !Number.isInteger(idCliente) || !isNaN(nome) || nome.length < 3 || cpf.toString().length < 11 || cpf.toString().length > 11) {
+            if (!idCliente || (!nome && !cpf) || !Number.isInteger(idCliente)) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente.' });
             };
 
