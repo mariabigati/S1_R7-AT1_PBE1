@@ -43,7 +43,9 @@ const clienteController = {
             if (!idCliente || (!nome && !cpf) || !Number.isInteger(idCliente)) {
                 return res.status(400).json({ message: 'Verifique os dados enviados e tente novamente.' });
             };
-
+            if ((nome && nome.length < 3) || (cpf && cpf.toString().length < 11 || cpf.toString().length > 11)) {
+                return res.status(400).json({ message: 'Verifique os dados enviados!' });
+            };
             const verifCpf = await clienteModel.selectCpf(cpf);
             if (verifCpf.length != 0) {
                 return res.status(409).json({ message: 'CPF já foi registrado! Tente novamente!' });
